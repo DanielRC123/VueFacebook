@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook page :V:V:V</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <!--  Favoritos  -->
+        <div class="favoritos">
+            <div class="favorito" v-for="aliasFavorito in todosFavoritos">
+                <a href="">
+                    <img :src="aliasFavorito.picture.data.url" :alt="aliasFavorito.name" class="avatarFavorito">
+                </a>
+            </div>
+        </div>
+        <!-- Content -->
+        <article class="contenido">
+            <p style="text-align: center;"><b>Buscar Usuarios Facebook</b></p>
+            <!-- Search -->
+            <form class="search" v-on:submit.prevent="Buscar">
+                <input type="text" v-model="busqueda"class="search__input" required placeholder="Escriba el id de un Usuario de Facebook">
+                <input type="submit" class="search__submit" value="Buscar">
+            </form>
+
+            <!-- Resultado -->
+            <p v-else style="text-align: center;">Esperando por la busqueda</p>
+            <!-- Error -->
+            <div class="result__error" v-show="fail">{{fail}}</div>
+        </article>
+        <div class="result" v-if="resultado">
+            <section class="md:h-full flex items-center text-gray-600" >
+                <div class="container px-4 py-24 mx-center">
+                    <div class="text-center mb-12">
+                        <h5 class="tituloFacebook">Facebook</h5>
+                        <h1 class="text-4xl md:text-6xl text-gray-700 font-semibold">Usuario</h1>
+                    </div>
+                    <div class="flex flex-wrap -m-4" >
+
+
+                        <div class="p-4 sm:w-1/2 lg:w-1/3"  style="visibility: hidden;">
+                            <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" >
+                                <img class="lg:h-72 md:h-48 w-full object-cover object-center"
+                                    :src="resultado.picture.data.url" alt="blog">
+                                <div class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in" >
+                                    <h2 class="text-base font-medium text-indigo-300 mb-1">Biografia</h2>
+                                    <h1 class="text-2xl font-semibold mb-3">{{resultado.name}}</h1>
+                                    <p class="leading-relaxed mb-3">Hola, mi nombre es {{resultado.name}} y soy un usuario de Facebook </p>
+                                    <div class="flex items-center flex-wrap">
+                                        <div class='icono-email'></div>
+                                        <div>correo:</div>
+                                        <br>
+                                        <p style="font-size: 15px;">{{resultado.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-4 sm:w-1/2 lg:w-1/3"  style="text-align: center">
+                            <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" >
+                                <img class="lg:h-72 md:h-48 w-full object-cover object-center"
+                                    :src="resultado.picture.data.url" alt="blog">
+                                <div class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in" >
+                                    <h2 class="text-base font-medium text-indigo-300 mb-1">Biografia</h2>
+                                    <h1 class="text-2xl font-semibold mb-3">{{resultado.name}}</h1>
+                                    <p class="leading-relaxed mb-3">Hola, mi nombre es {{resultado.name}} y soy un usuario de Facebook </p>
+                                    <div class="flex items-center flex-wrap">
+                                        <div class='icono-email'></div>
+                                        <div>correo:</div>
+                                        <br>
+                                        <p style="font-size: 15px;">{{resultado.email}}</p>
+                                        
+                                        <div>
+                                            <a v-if="esFavorito" href="" class="result__toggle-favorite" @click.prevent="removeFavorito">Eliminar de Favoritos</a>
+                                            <a v-else href="" class="result__toggle-favorite" @click.prevent="addFavorito">Añadir a Favoritos</a>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+            
+
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>const AppMontada = app.mount('#app');
+
+
+    </script>
+</body>
+
+</html>

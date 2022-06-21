@@ -1,0 +1,115 @@
+/* General */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-size: 1.3rem;
+}
+
+/* Content */
+.contenido {
+  background-color: #2fa2b9f5;
+  width: 768px;
+  max-width: 768px;
+  padding: 3rem;
+  box-shadow: 2px 2px 3px rgb(128, 128, 128);
+  border-radius: 1rem;
+}
+
+
+/* Search */
+.search {
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+
+.search__input {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+/* Result */
+
+.result__toggle-favorite {
+  position: relative;
+  top: 0.3rem;
+  right: 0.3rem;
+  border: none;
+  color: rgba(59, 130, 246, 0.5);
+  padding: 0.4rem;
+}
+
+
+
+
+
+.result__error {
+  padding: 0.3rem;
+  background-color: rgb(255, 38, 0);
+  color: white;
+  text-align: center;
+  border: 1px solid black;
+}
+
+
+.favoritos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.favorito {
+  transition: transform 0.3s ease-out;
+}
+
+.avatarFavorito {
+  height: 5rem;
+  margin: 0.3rem;
+}
+
+
+.icono-email {
+  background: white;  /* Fondo del icnono */
+  box-sizing: border-box;
+  width: 40px;  /* Alto del icono */
+  height: 30px;  /* Ancho del icono */
+  border: 1px solid #777;  /* Borde del icono */
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.095);  /* Sombra */
+  position: relative;
+  }
+  .icono-email:before, .icono-email:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  }
+  .icono-email:before {
+  border: 19px solid transparent;
+  border-top: 20px solid #777; /* Color igual a color de borde */
+  }
+  .icono-email:after {
+  border: 18px solid transparent;
+  border-top: 19px solid white;  /* Color igual a color de fondo */
+  left:1px;
+  }
+  
+  .tituloFacebook{
+    color:#166fe5
+  }
