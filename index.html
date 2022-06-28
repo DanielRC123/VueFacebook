@@ -38,7 +38,7 @@
             <!-- Error -->
             <div class="result__error" v-show="fail">{{fail}}</div>
         </article>
-        <div class="result" v-if="resultado">
+        <div class="result" v-if="resultado" >
             <section class="md:h-full flex items-center text-gray-600" >
                 <div class="container px-4 py-24 mx-center">
                     <div class="text-center mb-12">
@@ -87,12 +87,32 @@
                                             
                                         </div>
                                     </div>
+                                    
+
+                                    <div class="text-2xl font-semibold mb-3" >
+                                        <button type="submit" class="search__submit" @click.prevent="estadoBuscar">Buscar</button>
+                                    </div>
+                                    
 
                                 </div>
                             </div>
                         </div>
-
-
+                    </div>
+                    <br>
+                    <div >
+                        <article class="contenido"  v-show="estado">
+                            <p style="text-align: center;"><b>Buscar Usuarios Facebook</b></p>
+                            <!-- Search -->
+                            <form class="search" v-on:submit.prevent="Buscar">
+                                <input type="text" v-model="busqueda"class="search__input" required placeholder="Escriba el id de un Usuario de Facebook">
+                                <input type="submit" class="search__submit" value="Buscar">
+                            </form>
+                
+                            <!-- Resultado -->
+                            <p v-else style="text-align: center;">Esperando por la busqueda</p>
+                            <!-- Error -->
+                            <div class="result__error" v-show="fail">{{fail}}</div>
+                        </article>
                     </div>
                 </div>
             </section>

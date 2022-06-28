@@ -1,6 +1,6 @@
 //const API = "https://api.github.com/users/";
 const API = "https://graph.facebook.com/v14.0/"; 
-const TOKEN = "?fields=id,name,email,picture&access_token=GGQVlhc25VbVZA1TWNVZAldZAVEUtaDhpYWszSGJjeFpmZAkd0LXVNekt3eWtzNDVGN1VheXNvUjZAHLUZAybzREUFNIb0pndGFTVG9JeExhSnZAWOG8tdXZAoS1haeHQ3Sk9VczR0ang1NXRfOVE1Tm9tTW1lel9GMDR3RkpzckZA1MVZANNTZAtZAwZDZD";
+const TOKEN = "?fields=id,name,email,picture&access_token=EAAJ6RLJPYeUBAAaMZBZB3GOl4jIsqqjoobkY5i6cgARcUIQJ3vXQSsD3qt77dJ4J9pgPOVyOMZBKRVoKRZCrFbpZCQtZBEQuff3o50NDtjA1NpCjWln8cOddEClHfInPaCFmmUqnbshn4xv6mRTId03ZCefPkIvTRDg08Tk4czKsfjcCahmZBHkW96N4D4H74V9VYaQsgfBFLPyxlaQVPbc1L4MIbRiG7IapzkjdZCgMp8vk3zyZCrO6gy";
 // const TOKEN = "?fields=id,name,picture&access_token=EAAIHQhIvwlkBADVyaZAwFAzngLn20ZBE3ufb5pPAKvuVN5qAdFV8iIq7JkP09wQGr8IqFnngpJxydpKITFtBeF1L9U9SN8O2tU3DAuquRQsg7bZBTs0SUkFzyCf6DrKxhk1HQAWVBZCuzaYF8a7ZBahioEQaOpwrQTvZCB7frQ6jDXgkVKB6ip"
 const app = Vue.createApp({
   data() {
@@ -8,20 +8,39 @@ const app = Vue.createApp({
       busqueda: null,
       resultado: null,
       fail: null,
-      favoritos: new Map() //Donde guardaremos los Usuarios favoritos
+      favoritos: new Map(), //Donde guardaremos los Usuarios favoritos
+      estado:false,
   
     }
   },
+  created(){
+    const FavoritosGuardados = JSON.parse(window.localStorage.getItem("favoritos"))
 
+    if(FavoritosGuardados?.length){
+      const favoritosRebuild = new Map(
+
+        FavoritosGuardados.map(alias =>[alias.id,alias]))
+
+        this.favoritos = favoritosRebuild
+        console.log(this.favoritos)
+      
+    }
+  },
   computed:{
     esFavorito(){
       return this.favoritos.has(this.resultado.id)
     },
     todosFavoritos(){
       return Array.from(this.favoritos.values())
-    }
+    },
+
   },
+
   methods: {
+    
+    estadoBuscar(){
+     this.estado = !this.estado
+    },
     
     async Buscar(){
       try{
